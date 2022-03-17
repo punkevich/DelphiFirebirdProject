@@ -1,0 +1,30 @@
+unit login;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TFLogin = class(TForm)
+    LUser: TLabel;
+    LPassword: TLabel;
+    EUsername: TEdit;
+    EPassword: TEdit;
+    BEnter: TButton;
+    LGuestLogin: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FLogin: TFLogin;
+
+implementation
+
+{$R *.dfm}
+
+end.

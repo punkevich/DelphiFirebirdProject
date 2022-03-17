@@ -11,6 +11,7 @@ uses
 type
   Tdm = class(TDataModule)
     FDConnection: TFDConnection;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,5 +26,11 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure Tdm.DataModuleCreate(Sender: TObject);
+begin
+  FDConnection.Close;
+  FDConnection.Open;
+end;
 
 end.

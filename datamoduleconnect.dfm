@@ -1,14 +1,14 @@
 object dm: Tdm
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 194
   Width = 266
   object FDConnection: TFDConnection
     Params.Strings = (
-      'Database=D:\delphifirebirdproject\INFO.FDB'
+      'Database=D:\solindata\INFO.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'DriverID=FB')
-    Connected = True
     Left = 32
     Top = 16
   end

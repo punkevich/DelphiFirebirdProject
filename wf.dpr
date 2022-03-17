@@ -3,7 +3,8 @@ program wf;
 uses
   Vcl.Forms,
   main in 'main.pas' {FMain},
-  datamoduleconnect in 'datamoduleconnect.pas' {dm: TDataModule};
+  datamoduleconnect in 'datamoduleconnect.pas' {dm: TDataModule},
+  login in 'common\login.pas' {FLogin};
 
 {$R *.res}
 
