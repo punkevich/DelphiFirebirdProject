@@ -1,0 +1,15 @@
+object dm: Tdm
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 194
+  Width = 266
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=D:\solindata\INFO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Left = 32
+    Top = 16
+  end
+end

@@ -20,6 +20,7 @@ type
     LGuestLogin: TLabel;
     FDQuery: TFDQuery;
     procedure BEnterClick(Sender: TObject);
+    procedure LGuestLoginClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,9 +32,10 @@ var
 
 implementation
 
+uses
+  classuser;
+
 {$R *.dfm}
-
-
 
 procedure TFLogin.BEnterClick(Sender: TObject);
 begin
@@ -45,8 +47,19 @@ begin
     ParamByName('a').AsString := EUsername.Text;
     ParamByName('b').AsString := EPassword.Text;
     Open;
-    showmessage(inttostr(fieldbyname('id').AsInteger));
+    if FieldByName('ID').AsInteger > 0 then begin
+      User := TUser.Create(FieldByName('ID').AsInteger);
+      modalresult := mrOk;
+    end
+    else
+      showmessage('Неверное имя или пароль!');
   end;
+end;
+
+procedure TFLogin.LGuestLoginClick(Sender: TObject);
+begin
+  User := TUser.Create(1);
+  ModalResult := mrOk;
 end;
 
 end.

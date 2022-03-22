@@ -4,7 +4,8 @@ uses
   Vcl.Forms,
   main in 'main.pas' {FMain},
   datamoduleconnect in 'datamoduleconnect.pas' {dm: TDataModule},
-  login in 'common\login.pas' {FLogin};
+  login in 'common\login.pas' {FLogin},
+  classuser in 'common\classuser.pas';
 
 {$R *.res}
 

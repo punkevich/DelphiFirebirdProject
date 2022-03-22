@@ -1,9 +1,10 @@
 object FLogin: TFLogin
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = #1042#1093#1086#1076
-  ClientHeight = 265
-  ClientWidth = 332
+  ClientHeight = 275
+  ClientWidth = 342
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +12,7 @@ object FLogin: TFLogin
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   PixelsPerInch = 96
   TextHeight = 13
   object LUser: TLabel
@@ -39,6 +41,7 @@ object FLogin: TFLogin
     Font.Name = 'Tahoma'
     Font.Style = [fsUnderline]
     ParentFont = False
+    OnClick = LGuestLoginClick
   end
   object EUsername: TEdit
     Left = 152

@@ -12,4 +12,9 @@ object dm: Tdm
     Left = 32
     Top = 16
   end
+  object QTemp: TFDQuery
+    Connection = FDConnection
+    Left = 112
+    Top = 16
+  end
 end
