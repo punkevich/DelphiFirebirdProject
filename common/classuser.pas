@@ -3,13 +3,15 @@ unit classuser;
 interface
 
 uses
-  Classes, Sysutils;
+  Classes, Sysutils, classconnection;
 
 type
   TUser = class(TObject)
   private
     fid : integer;
     fusername : string;
+    connection: TConnection;
+
   public
     constructor Create(id: integer);
     destructor Destroy; override;
@@ -37,11 +39,13 @@ begin
     Open;
     self.fusername := FieldByName('USERNAME').AsString;
   end;
+  self.connection := TConnection.Create(self.id);
 end;
 
 destructor TUser.Destroy;
 begin
   inherited;
+  connection.Free;
 end;
 
 end.

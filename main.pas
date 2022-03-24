@@ -12,6 +12,7 @@ type
     PUserInfo: TPanel;
     LUserName: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -28,6 +29,12 @@ uses
   classuser;
 
 {$R *.dfm}
+
+procedure TFMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  User.Free;
+  User := nil;
+end;
 
 procedure TFMain.FormCreate(Sender: TObject);
 var

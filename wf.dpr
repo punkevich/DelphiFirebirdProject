@@ -5,7 +5,8 @@ uses
   main in 'main.pas' {FMain},
   datamoduleconnect in 'datamoduleconnect.pas' {dm: TDataModule},
   login in 'common\login.pas' {FLogin},
-  classuser in 'common\classuser.pas';
+  classuser in 'common\classuser.pas',
+  classconnection in 'common\classconnection.pas';
 
 {$R *.res}
 
