@@ -1,0 +1,55 @@
+unit main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, datamoduleconnect, login, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Menus;
+
+type
+  TFMain = class(TForm)
+    PUserInfo: TPanel;
+    LUserName: TLabel;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FMain: TFMain;
+
+
+implementation
+
+uses
+  classuser;
+
+{$R *.dfm}
+
+procedure TFMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  User.Free;
+  User := nil;
+end;
+
+procedure TFMain.FormCreate(Sender: TObject);
+var
+  Action : TCloseAction;
+begin
+  dm := Tdm.Create(self);
+  FLogin := TFLogin.Create(Self);
+  if FLogin.ShowModal <> mrOk then begin
+    Close;
+    Application.Terminate;
+  end;
+  LUsername.Caption := User.username;
+end;
+
+end.
