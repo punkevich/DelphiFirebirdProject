@@ -14,6 +14,7 @@ type
   Tdm = class(TDataModule)
     FDConnection: TFDConnection;
     QTemp: TFDQuery;
+    FDTransaction: TFDTransaction;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

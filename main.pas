@@ -7,7 +7,10 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, datamoduleconnect, login, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.Menus, Data.DB, Vcl.Grids, Vcl.DBGrids, IdBaseComponent,
   IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, Xml.xmldom, Xml.XMLIntf,
-  Xml.XMLDoc, System.StrUtils;
+  Xml.XMLDoc, System.StrUtils, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TFMain = class(TForm)
@@ -23,9 +26,12 @@ type
     TBSave: TButton;
     HTTP: TIdHTTP;
     XMLDocument: TXMLDocument;
+    DSMain: TDataSource;
+    QMain: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure TBRefreshClick(Sender: TObject);
+    procedure TBSaveClick(Sender: TObject);
   private
     procedure fillSG;
   public
@@ -62,6 +68,7 @@ begin
   XMLDocument := TXMLDocument.Create(self);
   LUsername.Caption := User.username;
   fillSG;
+  QMain.Open;
 end;
 
 procedure TFMain.TBRefreshClick(Sender: TObject);
@@ -87,6 +94,21 @@ begin
     end;
   end;
 
+end;
+
+procedure TFMain.TBSaveClick(Sender: TObject);
+begin
+  with dm.QTemp, SQL do begin
+    Close;
+    Clear;
+    Add('INSERT INTO VALCURS (VALUTE_ID, VALCURS_DATE, VALCURS_VALUE, USER_ID)');
+    Add('VALUES(:VALUTE_ID, :VALCURS_DATE, :VALCURS_VALUE, :USER_ID)');
+    ParamByName('VALUTE_ID').AsInteger := 1;
+    ParamByName('VALCURS_DATE').AsDateTime := Now;
+    ParamByName('VALCURS_VALUE').AsFloat := strToFloat(SGCbr.Cells[1,0]);
+    ParamByName('USER_ID').AsInteger := User.id;
+    ExecSQL;
+  end;
 end;
 
 procedure TFMain.fillSG;
